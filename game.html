@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Virtual Drum Kit</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #6a778f;
+            font-family: Arial, sans-serif;
+        }
+        .header {
+            text-align: left;
+            margin-bottom: 10px;
+            padding: 10px 20px;
+            border: 2px solid #fff;
+            border-radius: 10px;
+            background-color: #333;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+             position: absolute; 
+            top: 20px;
+            left: 20px;
+        }
+
+        .header h1 {
+            font-size: 36px;
+            color: #fff;
+            margin: 0;
+        }
+
+
+
+
+        .drum-kit {
+            display: flex;
+            flex-wrap: wrap;
+            width: 600px;
+        }
+
+        .key {
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin: 10px;
+            padding: 20px;
+            cursor: pointer;
+            text-align: center;
+            font-size: 20px;
+            background-color: #fff;
+            box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
+            transition: transform 0.1s ease;
+        }
+
+        .key:hover {
+            transform: translateY(-2px);
+        }
+
+        .sound {
+            display: block;
+            font-size: 14px;
+            margin-top: 5px;
+            color: #666;
+        }
+
+        .key kbd {
+            display: block;
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .playing {
+            transform: scale(1.1);
+            box-shadow: 0 8px 8px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+  <div class="header">
+        <h1>TUNE GAME</h1>
+    </div>
+
+    <div class="drum-kit">
+        <div data-key="65" class="key" onclick="playSound('65')">
+            <kbd>A</kbd>
+            <span class="sound">Clap</span>
+        </div>
+        <div data-key="83" class="key" onclick="playSound('83')">
+            <kbd>S</kbd>
+            <span class="sound">Hi-Hat</span>
+        </div>
+        <div data-key="68" class="key" onclick="playSound('68')">
+            <kbd>D</kbd>
+            <span class="sound">Kick</span>
+        </div>
+        <div data-key="70" class="key" onclick="playSound('70')">
+            <kbd>F</kbd>
+            <span class="sound">Open-Hat</span>
+        </div>
+        <div data-key="71" class="key" onclick="playSound('71')">
+            <kbd>G</kbd>
+            <span class="sound">Boom</span>
+        </div>
+        <div data-key="72" class="key" onclick="playSound('72')">
+            <kbd>H</kbd>
+            <span class="sound">Ride</span>
+        </div>
+        <div data-key="74" class="key" onclick="playSound('74')">
+            <kbd>J</kbd>
+            <span class="sound">Snare</span>
+        </div>
+        <div data-key="75" class="key" onclick="playSound('75')">
+            <kbd>K</kbd>
+            <span class="sound">Tom</span>
+        </div>
+        <div data-key="76" class="key" onclick="playSound('76')">
+            <kbd>L</kbd>
+            <span class="sound">Tink</span>
+        </div>
+    </div>
+
+    <audio data-key="65" src="1.mp3"></audio>
+    <audio data-key="83" src="2.mp3"></audio>
+    <audio data-key="68" src="3.mp3"></audio>
+    <audio data-key="70" src="4.mp3"></audio>
+    <audio data-key="71" src="5.mp3"></audio>
+    <audio data-key="72" src="6.mp3"></audio>
+    <audio data-key="74" src="7.wav"></audio>
+    <audio data-key="75" src="8.wav"></audio>
+    <audio data-key="76" src="9.wav"></audio>
+
+    <script>
+        function playSound(keyCode) {
+            const audio = document.querySelector(`audio[data-key="${keyCode}"]`);
+            const key = document.querySelector(`.key[data-key="${keyCode}"]`);
+            if (!audio) return;
+            audio.currentTime = 0; // Rewind to the start
+            audio.play();
+            key.classList.add('playing');
+            setTimeout(() => key.classList.remove('playing'), 100);
+        }
+    </script>
+</body>
+</html>

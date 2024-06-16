@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TUNETROVE</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sixtyfour&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Telugu:wght@100..900&display=swap">
+    <style>
+        
+        body {
+            font-family: 'Noto Sans Telugu', Arial, Helvetica, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0; 
+        }
+
+     
+        header {
+            background-color: #005f73;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            border-bottom: 4px solid #002b33; 
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header-content img {
+            height: 60px;
+            width: auto;
+        }
+
+        .header-content h1 {
+            font-family: 'Sixtyfour', sans-serif;
+            margin: 0;
+            font-size: 28px;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        nav ul li {
+            margin-right: 20px;
+        }
+
+        nav ul li:last-child {
+            margin-right: 0;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 16px;
+            transition: color 0.3s ease; 
+        }
+
+        nav ul li a:hover {
+            color: #ddd;
+        }
+
+        /* Search container styles */
+        .search-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .search-container input[type=text] {
+            padding: 10px;
+            width: 50%;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            font-size: 16px;
+            outline: none;
+        }
+
+        .search-container button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #4CAF50;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease; 
+        }
+
+.search-container form {
+    margin-bottom: 20px; 
+}
+        .search-container button:hover {
+            background-color: #45a049;
+        }
+.search-container .update-message {
+    animation-name: fadeInOut;
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes fadeInOut {
+    0%, 100% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+     
+        .content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .content iframe {
+            margin: 10px;
+            border: none;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease; 
+        }
+
+        .content iframe:hover {
+            transform: scale(1.1); 
+        }
+ #help-section {
+        display: none;
+        margin-top: 20px;
+        padding: 20px;
+        background-color: #005f73;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .help-content {
+        text-align: center;
+        color: white;
+    }
+
+    .help-content p {
+        margin-bottom: 10px;
+        font-size: 16px;
+    }
+
+    .contact-icons {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .contact-icons li {
+        display: inline-block;
+        margin: 0 10px;
+    }
+
+    .contact-icons a {
+        color: white;
+        font-size: 24px;
+        transition: color 0.3s ease;
+    }
+
+    .contact-icons a:hover {
+        color: #007bff; /* Change to desired hover color */
+    }
+    </style>
+</head>
+<body>
+<header>
+    <div class="header-content">
+        <img src="logo.png" alt="Logo">
+        <h1>TUNETROVE</h1>
+        <nav>
+            <ul>
+                <li><a class="active" href="game.html"><i class="fa fa-fw fa-gamepad"></i> Game</a></li> 
+                <li><a href="music.html"><i class="fa fa-fw fa-music"></i> Music</a></li>
+                <li><a href="http://localhost:8080/"><i class="fa fa-fw fa-list"></i>T0-do list</a></li> 
+                <li><a href="#help-section"><i class="fa fa-question-circle"></i> Help</a></li>
+               
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<div class="search-container">
+    <form id="search-form" action="/search" method="GET">
+        <input id="search-input" type="text" placeholder="Search for video songs..." name="query">
+        <button type="submit">Search</button>
+    </form>
+   <marquee class="update-message">This site is being updated. If there are any queries, approach through mail, Facebook, Instagram, etc.</marquee>
+</div>
+</div>
+
+<div id="video-results" class="content"></div>
+
+
+<div class="content">
+    <iframe width="300" height="200" src="https://www.youtube.com/embed/8FAUEv_E_xQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <iframe width="300" height="200" src="https://www.youtube.com/embed/Vbu44JdN12s" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <iframe width="300" height="200" src="https://www.youtube.com/embed/s-TDl55JW44" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <iframe width="300" height="200" src="https://www.youtube.com/embed/krPJJCMWi_k" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <iframe width="300" height="200" src="https://www.youtube.com/embed/i2idob-H874" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <iframe width="300" height="200" src="https://www.youtube.com/embed/sFWLDEmws7A?si=IApBlqUEk7aeTQZd" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    <iframe width="300" height="200" src="https://www.youtube.com/embed/da2A5sfTLB0?si=3uWPawVkYg5Qgfus" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    <iframe width="300" height="200" src="https://www.youtube.com/embed/QXr4udrkafU?si=HvrKZtgXSyr9BVjc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+</div>
+<div id="help-section" style="display: none;">
+    <hr>
+    <div class="help-content">
+        <p>If you are facing any issues, please contact us through:</p>
+        <ul class="contact-icons">
+            <li><a href="https://www.facebook.com/" target="_blank" class="fa fa-facebook"></a></li>
+ <li><a href="https://mail.google.com/mail/u/0/?ogbl#inbox?compose=new" class="fa fa-envelope"></a></li> 
+            <li><a href="https://www.instagram.com/k_yaswanth_k" target="_blank" class="fa fa-instagram"></a></li>
+            <li><a href="https://twitter.com/" target="_blank" class="fa fa-twitter"></a></li>
+        </ul>
+    </div>
+</div>
+
+<script>
+    // JavaScript to scroll to the help section when clicking on the "Help" link
+    document.querySelector('nav ul li:nth-child(4) a').addEventListener('click', function(event) {
+        event.preventDefault(); // Prevent the default action of the link
+        var helpSection = document.getElementById('help-section');
+        helpSection.style.display = 'block'; // Ensure the help section is visible
+        helpSection.scrollIntoView({ behavior: 'smooth' }); // Scroll to the help section smoothly
+    });
+</script>
+
+
+
+</body>
+</html>

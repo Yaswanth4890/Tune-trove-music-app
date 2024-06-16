@@ -1,0 +1,78 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #334455;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    text-align: center;
+}
+
+.quote-container {
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#new-quote-btn {
+    background-color: purple;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    margin-top: 20px;
+}
+
+#new-quote-btn:hover {
+    background-color: #0056b3;
+}
+
+.share-icons {
+    margin-top: 20px;
+}
+
+.share-icons i {
+    color: #007bff;
+    font-size: 24px;
+    margin-right: 10px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.share-icons i:hover {
+    color: #0056b3;
+}
+/* Container styles */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Share icons container styles */
+.share-icons-container {
+    margin-top: 20px;
+    align-self: flex-end; /* Aligns the container to the right */
+}
+
+/* Share icons styles */
+.share-icons {
+    display: flex;
+}
+
+/* Custom styles for icons */
+.fab.fa-instagram,
+.fab.fa-twitter,
+.fab.fa-facebook {
+    color: black;
+    margin-right: 10px; /* Adjust the margin between icons */
+}

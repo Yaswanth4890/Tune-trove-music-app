@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TUNE TROVE MUSIC PLAYER</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sixtyfour&display=swap">
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+  }
+
+  .header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+    border-bottom: 4px solid #002b33;
+    border-top-left-radius: 8px; 
+    border-top-right-radius: 8px;
+  }
+
+  .header h1 {
+    font-family: 'Sixtyfour', sans-serif;
+    margin: 0;
+    font-size: 28px;
+  }
+
+  .search-container {
+    margin-top: 20px;
+    text-align: center;
+  }
+
+  .search-bar {
+    padding: 10px;
+    width: 60%;
+    border: 2px solid #fff;
+    border-radius: 20px;
+    outline: none;
+    transition: border-color 0.3s ease;
+  }
+
+  .search-bar:focus {
+    border-color: #45a049;
+  }
+
+  .search-button {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 10px;
+    transition: background-color 0.3s ease;
+  }
+
+  .search-button:hover {
+    background-color: #45a049;
+  }
+
+  .container {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .playlist {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .playlist li {
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .playlist li:hover {
+    background-color: #f0f0f0;
+  }
+
+  audio {
+    width: 100%;
+    margin-top: 20px;
+  }
+
+  .controls {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .control-btn {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 0 10px;
+    transition: background-color 0.3s ease;
+  }
+
+  .control-btn:hover {
+    background-color: #45a049;
+  }
+
+  .download-link {
+    color: #4CAF50;
+    margin-left: 10px;
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>TUNETROVE</h1>
+</div>
+<div class="search-container">
+  <input type="text" class="search-bar" placeholder="Search...">
+  <button class="search-button">Search</button>
+</div>
+
+
+<div class="container">
+  <ul class="playlist">
+    <li>
+      <span onclick="playSong('panja.mp3')">panja</span>
+      <a class="download-link" href="panja.mp3" download>Download</a>
+    </li>
+    <li>
+      <span onclick="playSong('Hungry Cheetah.mp3')">Hungry Cheetah</span>
+      <a class="download-link" href="Hungry Cheetah.mp3" download>Download</a>
+    </li>
+    <li>
+      <span onclick="playSong('Hukum.mp3')">Hukum</span>
+      <a class="download-link" href="Hukum.mp3" download>Download</a>
+    </li>
+<li>
+      <span onclick="playSong('athadu.mp3')">Athadu</span>
+      <a class="download-link" href="Athadu.mp3" download>Download</a>
+    </li>
+<li>
+      <span onclick="playSong('College Papa.mp3')">College Papa</span>
+      <a class="download-link" href="College Papa.mp3" download>Download</a>
+    </li>
+<li>
+      <span onclick="playSong('Badass.mp3')">Badass</span>
+      <a class="download-link" href="Badass.mp3" download>Download</a>
+    </li>
+<li>
+      <span onclick="playSong('nanna nuvvu.mp3')">nanna nuvvu</span>
+      <a class="download-link" href="nanna nuvvu.mp3" download>Download</a>
+    </li>
+<li>
+      <span onclick="playSong('Anjandri.mp3')">Anjandri</span>
+      <a class="download-link" href="Anjandri.mp3" download>Download</a>
+    </li>
+<li>
+      <span onclick="playSong('Kurchi mad.mp3')">Kurchi mad</span>
+      <a class="download-link" href="Kurchi mad.mp3" download>Download</a>
+    </li>
+<li>
+      <span onclick="playSong('Radhika.mp3')">Radhika</span>
+      <a class="download-link" href="Radhika.mp3" download>Download</a>
+    </li>
+
+  </ul>
+  <audio id="audio" controls>
+    Your browser does not support the audio element.
+  </audio>
+  <div class="controls">
+    <button class="control-btn" onclick="prevSong()">⇦ Previous</button>
+    <button class="control-btn" onclick="nextSong()">Next ⇨</button>
+  </div>
+</div>
+
+<script>
+  const audio = document.getElementById('audio');
+  const playlistItems = document.querySelectorAll('.playlist li');
+  let currentSongIndex = 0;
+
+  function playSong(src) {
+    audio.src = src;
+    audio.play();
+    highlightCurrentSong(src);
+  }
+
+  function prevSong() {
+    currentSongIndex = (currentSongIndex - 1 + playlistItems.length) % playlistItems.length;
+    const src = playlistItems[currentSongIndex].querySelector('span').getAttribute('onclick').replace("playSong('", "").replace("')", "");
+    playSong(src);
+  }
+
+  function nextSong() {
+    currentSongIndex = (currentSongIndex + 1) % playlistItems.length;
+    const src = playlistItems[currentSongIndex].querySelector('span').getAttribute('onclick').replace("playSong('", "").replace("')", "");
+    playSong(src);
+  }
+
+  function highlightCurrentSong(src) {
+    playlistItems.forEach(item => {
+      item.style.backgroundColor = '';
+    });
+    const selectedItem = Array.from(playlistItems).find(item => item.querySelector('span').getAttribute('onclick').includes(src));
+    selectedItem.style.backgroundColor = '#45a049';
+  }
+</script>
+
+
+
+</body>
+</html>

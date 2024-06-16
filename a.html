@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Memory Game</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    .memory-game {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 50px;
+    }
+
+    .cards {
+      display: flex;
+      flex-wrap: wrap;
+      max-width: 500px;
+    }
+
+    .card {
+      width: 100px;
+      height: 100px;
+      margin: 10px;
+      background-color: #f0f0f0;
+      border-radius: 5px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 20px;
+      cursor: pointer;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .flipped {
+      background-color: #fff;
+    }
+
+    .matched {
+      background-color: green;
+      pointer-events: none;
+    }
+
+    #restart-btn {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="memory-game">
+    <div class="cards" id="card-container">
+      <!-- Cards will be generated dynamically using JavaScript -->
+    </div>
+    <button id="restart-btn">Restart Game</button>
+  </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const cardContainer = document.getElementById('card-container');
+      const restartBtn = document.getElementById('restart-btn');
+
+      const images = ['🍎', '🍌', '🍒', '🥑', '🍕', '🍔', '🌭', '🍟'];
+      const cards = [...images, ...images];
+      let flippedCards = [];
+      let matchedCards = [];
+
+      cards.sort(() => Math.random() - 0.5);
+
+      cards.forEach((image, index) => {
+        const card = document.createElement('div');
+        card.classList.add('card');
+        card.dataset.index = index;
+        card.innerHTML = `<span class="hidden">${image}</span>`;
+        cardContainer.appendChild(card);
+        card.addEventListener('click', flipCard);
+      });
+
+      restartBtn.addEventListener('click', restartGame);
+
+      function flipCard() {
+        if (flippedCards.length < 2 && !flippedCards.includes(this)) {
+          this.classList.add('flipped');
+          flippedCards.push(this);
+          if (flippedCards.length === 2) {
+            setTimeout(checkMatch, 1000);
+          }
+        }
+      }
+
+      function checkMatch() {
+        const [card1, card2] = flippedCards;
+        const image1 = card1.querySelector('span').textContent;
+        const image2 = card2.querySelector('span').textContent;
+        if (image1 === image2) {
+          card1.classList.add('matched');
+          card2.classList.add('matched');
+          matchedCards.push(card1, card2);
+          checkWin();
+        } else {
+          card1.classList.remove('flipped');
+          card2.classList.remove('flipped');
+        }
+        flippedCards = [];
+      }
+
+      function checkWin() {
+        if (matchedCards.length === cards.length) {
+          alert('Congratulations! You win!');
+        }
+      }
+
+      function restartGame() {
+        flippedCards.forEach(card => card.classList.remove('flipped'));
+        matchedCards.forEach(card => card.classList.remove('matched'));
+        flippedCards = [];
+        matchedCards = [];
+        setTimeout(() => {
+          cards.sort(() => Math.random() - 0.5);
+          cards.forEach((image, index) => {
+            const card = cardContainer.children[index];
+            card.innerHTML = `<span class="hidden">${image}</span>`;
+            card.addEventListener('click', flipCard);
+          });
+        }, 200);
+      }
+    });
+  </script>
+</body>
+</html>
